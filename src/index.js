@@ -63,7 +63,7 @@ export default (filepath1, filepath2) => {
     if (`${item.type}` === 'added') {
       result += ` + ${item.name}: ${item.value} \n`;
     }
-  };
+  }
 
   return result.concat('}');
 };
