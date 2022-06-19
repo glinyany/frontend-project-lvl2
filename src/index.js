@@ -46,7 +46,7 @@ export default (filepath1, filepath2) => {
   const obj1 = JSON.parse(json1);
   const obj2 = JSON.parse(json2);
 
-  const arraysDiff = genDiff(obj1,   obj2);
+  const arraysDiff = genDiff(obj1, obj2);
 
   let result = '{\n';
   for (const item of arraysDiff) {
