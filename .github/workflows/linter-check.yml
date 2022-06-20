@@ -31,4 +31,6 @@ jobs:
          node-version: ${{ matrix.node-verion }}
          cache: 'npm'
      ##- run: make install
-     - run: make lint
+     - name: Run liner
+      run: |
+        make lint
