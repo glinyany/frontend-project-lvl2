@@ -43,33 +43,34 @@ const genDiff = (json1, json2) => {
 export default (filepath1, filepath2) => {
   const json1 = readFileSync(filepath1, 'utf-8');
   const json2 = readFileSync(filepath2, 'utf-8');
-
   const obj1 = JSON.parse(json1);
   const obj2 = JSON.parse(json2);
 
   const arraysDiff = genDiff(obj1, obj2);
-
   let result = '{\n';
+  const symbol = { plus: ' +', minus: ' -', twoSpaces: '  ' };
   for (const item of arraysDiff) {
-    if (`${item.type}` === 'deleted') {
-      result += ` - ${item.name}: ${item.value}\n`;
-    }
-    if (`${item.type}` === 'unchanched') {
-      result += `   ${item.name}: ${item.value}\n`;
-    }
-    if (`${item.type}` === 'changed') {
-      result += ` - ${item.name}: ${item.value1}\n`;
-      result += ` + ${item.name}: ${item.value2}\n`;
-    }
-    if (`${item.type}` === 'added') {
-      result += ` + ${item.name}: ${item.value}\n`;
+    switch (item.type) {
+      case 'deleted':
+        result += `${symbol.minus} ${item.name}: ${item.value}\n`;
+        break;
+      case 'added':
+        result += `${symbol.plus} ${item.name}: ${item.value}\n`;
+        break;
+      case 'changed':
+        result += `${symbol.minus} ${item.name}: ${item.value1}\n`;
+        result += `${symbol.plus} ${item.name}: ${item.value2}\n`;
+        break;
+      default:
+        result += `${symbol.twoSpaces} ${item.name}: ${item.value}\n`;
+        break;
     }
   }
 
   return result.concat('}');
 };
 
-/*
+/* OUTPUT VIEW
 gendiff filepath1.json filepath2.json
 
 {
