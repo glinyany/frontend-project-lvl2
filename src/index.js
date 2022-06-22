@@ -1,3 +1,4 @@
+/* eslint-disable no-restricted-syntax */
 import { readFileSync } from 'fs';
 import _ from 'lodash';
 
@@ -51,17 +52,17 @@ export default (filepath1, filepath2) => {
   let result = '{\n';
   for (const item of arraysDiff) {
     if (`${item.type}` === 'deleted') {
-      result += ` - ${item.name}: ${item.value} \n`;
+      result += ` - ${item.name}: ${item.value}\n`;
     }
     if (`${item.type}` === 'unchanched') {
-      result += `   ${item.name}: ${item.value} \n`;
+      result += `   ${item.name}: ${item.value}\n`;
     }
     if (`${item.type}` === 'changed') {
-      result += ` - ${item.name}: ${item.value1} \n`;
-      result += ` + ${item.name}: ${item.value2} \n`;
+      result += ` - ${item.name}: ${item.value1}\n`;
+      result += ` + ${item.name}: ${item.value2}\n`;
     }
     if (`${item.type}` === 'added') {
-      result += ` + ${item.name}: ${item.value} \n`;
+      result += ` + ${item.name}: ${item.value}\n`;
     }
   }
 
