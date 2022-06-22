@@ -5,6 +5,8 @@ name: 'linter'
 #Trigger the workflow on push or pull request
 on:
   - push
+env:
+  CI: true
 
 jobs:
   build:
@@ -26,8 +28,15 @@ jobs:
     - name: npm install
       run: |
         make install
-      env:
-        CI: true
-    - name: Run liner
+    - name: Run linter
       run: |
         make lint
+    - run: make test
+    - name: Test code coverage
+      # https://github.com/paambaati/codeclimate-action
+      uses: paambaati/codeclimate-action@v3.0.0
+      # Add Code Climate secret key
+      env:
+        CC_TEST_REPORTER_ID : ${{ secrets.CC_TEST_REPORTER_ID }}
+      with:
+          coverageCommand: make test-coverage
