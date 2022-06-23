@@ -1,8 +1,11 @@
 install:
 	npm ci
 
-start:
-	gendiff __fixtures__/file1.json __fixtures__/file2.json
+start-json:
+	gendiff file1.json file2.json
+
+start-yaml:
+	gendiff file1.yaml file2.yaml
 
 gendiff:
 	node bin/gendiff.js -h
