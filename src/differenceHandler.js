@@ -29,6 +29,13 @@ const genDiff = (json1, json2) => {
         type: 'changed',
       };
     }
+    if (_.isObject(json1[key] && _.isObject(json2[key]))) {
+      return {
+        name: key,
+        type: 'nested',
+        children: genDiff(json1[key], json2[key]),
+      };
+    }
     return {
       name: key,
       value: json1[key],
