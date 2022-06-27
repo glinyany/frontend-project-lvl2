@@ -1,48 +1,38 @@
 import _ from 'lodash';
 
-const genDiff = (json1, json2) => {
-  const keys1 = _.keys(json1);
-  const keys2 = _.keys(json2);
-  const sumOfKeys = _.sortBy(_.union(keys1, keys2));
+const genDiff = (object1, object2) => {
+  const keys = _.sortBy(_.union(Object.keys(object1), Object.keys(object2)));
 
-  let result = {};
-  result = sumOfKeys.map((key) => {
-    if (!_.has(json1, key)) {
+  const result = keys.map((key) => {
+    const value1 = object1[key];
+    const value2 = object2[key];
+
+    if (!_.has(object1, key)) {
+      return { key, value: value2, type: 'added' };
+    }
+
+    if (!_.has(object2, key)) {
+      return { key, value: value1, type: 'deleted' };
+    }
+
+    if (_.isObject(value1) && _.isObject(value2)) {
+      return { key, children: genDiff(value1, value2), type: 'nested' };
+    }
+
+    if (!_.isEqual(value1, value2)) {
       return {
-        name: key,
-        value: json2[key],
-        type: 'added',
+        key, value1, value2, type: 'changed',
       };
     }
-    if (!_.has(json2, key)) {
-      return {
-        name: key,
-        value: json1[key],
-        type: 'deleted',
-      };
-    }
-    if (json1[key] !== json2[key]) {
-      return {
-        name: key,
-        value1: json1[key],
-        value2: json2[key],
-        type: 'changed',
-      };
-    }
-    if (_.isObject(json1[key] && _.isObject(json2[key]))) {
-      return {
-        name: key,
-        type: 'nested',
-        children: genDiff(json1[key], json2[key]),
-      };
-    }
-    return {
-      name: key,
-      value: json1[key],
-      type: 'unchanched',
-    };
+
+    return { key, value: value1, type: 'unchanged' };
   });
   return result;
 };
 
-export default genDiff;
+const buildTree = (object1, object2) => {
+  const result = { type: 'main', children: genDiff(object1, object2) };
+  return result;
+};
+
+export default buildTree;

@@ -1,5 +1,5 @@
 /* eslint-disable no-restricted-syntax */
-
+// old function that generate output of flat difference
 export default (object) => {
   let result = '{\n';
   const symbol = { plus: ' +', minus: ' -', twoSpaces: '  ' };
@@ -21,5 +21,7 @@ export default (object) => {
         break;
     }
   }
-  return result.concat('}');
+  result.concat('}');
+
+  return result;
 };
