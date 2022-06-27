@@ -10,6 +10,9 @@ start-yaml:
 start-nested:
 	gendiff nestedFile1.yml nestedFile2.yml
 
+plain:
+	gendiff -f plain nestedFile1.yml nestedFile2.yml
+
 gendiff:
 	node bin/gendiff.js -h
 

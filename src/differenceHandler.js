@@ -21,7 +21,7 @@ const genDiff = (object1, object2) => {
 
     if (!_.isEqual(value1, value2)) {
       return {
-        key, value1, value2, type: 'changed',
+        key, value1, value2, type: 'updated',
       };
     }
 

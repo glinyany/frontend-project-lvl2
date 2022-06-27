@@ -1,5 +1,6 @@
 /* eslint-disable no-restricted-syntax */
 import path from 'path';
+import _ from 'lodash';
 import parse from './parsers.js';
 import readFile from './utils.js';
 import buildTree from './differenceHandler.js';
@@ -13,6 +14,7 @@ export default (filepath1, filepath2, format = 'stylish') => {
   const data2 = parse(readFile(filepath2), ext2);
 
   const differenceObject = buildTree(data1, data2);
+  // console.log(_.entries(differenceObject));
   return getFormat(differenceObject, format);
 };
 

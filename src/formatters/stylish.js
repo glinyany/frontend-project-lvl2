@@ -31,7 +31,7 @@ const iter = (node, depth = 0) => {
     }
     case 'unchanged':
       return `${space(depth)}  ${node.key}: ${stringify(node.value, depth, iter)}`;
-    case 'changed': {
+    case 'updated': {
       const { key, value1, value2 } = node;
       const data1 = `${space(depth)}- ${key}: ${stringify(value1, depth, iter)}`;
       const data2 = `${space(depth)}+ ${key}: ${stringify(value2, depth, iter)}`;
