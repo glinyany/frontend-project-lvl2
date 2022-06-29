@@ -10,8 +10,8 @@ test('gendiff json-right-txt', () => {
 });
 
 test('gendiff yaml-right-txt', () => {
-  const path1 = ('file1.yaml');
-  const path2 = ('file2.yaml');
+  const path1 = ('file1.yml');
+  const path2 = ('file2.yml');
   const answer = readFile('right-flat.txt');
   expect(genDiff(path1, path2)).toEqual(answer);
 });
