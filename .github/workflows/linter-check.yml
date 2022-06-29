@@ -32,8 +32,8 @@ jobs:
       run: |
         make lint
     - name: Test code coverage
-    - run: make test
-    
+      run: | 
+	  	make test
       # https://github.com/paambaati/codeclimate-action
       uses: paambaati/codeclimate-action@v3.0.0
       # Add Code Climate secret key
