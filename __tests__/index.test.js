@@ -11,6 +11,7 @@ const cases = [
 describe.each(cases)('Compare %s and %s in format %s to have %s', (file1, file2, formatName, result) => {
   test('gendiff test', () => {
     const expected = readFile(result);
+    console.log(readFile(result));
     expect(genDiff(file1, file2, formatName)).toBe(expected);
   });
 });
