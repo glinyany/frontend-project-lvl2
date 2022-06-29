@@ -7,11 +7,14 @@ start-json:
 start-yaml:
 	gendiff file1.yaml file2.yaml
 
-start-nested:
-	gendiff nestedFile1.yml nestedFile2.yml
+nested:
+	gendiff -f stylish nestedFile1.yml nestedFile2.yml
 
 plain:
 	gendiff -f plain nestedFile1.yml nestedFile2.yml
+
+json:
+  gendiff -f json nestedFile1.yml nestedFile1.yml
 
 gendiff:
 	node bin/gendiff.js -h

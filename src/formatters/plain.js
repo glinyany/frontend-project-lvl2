@@ -3,48 +3,44 @@
 /* eslint-disable default-case */
 /* eslint-disable no-unused-vars */
 import _ from 'lodash';
-import path from 'path';
 
-const stringify = (tree, status) => {
-  if (!_.isObject(tree)) {
-    return String(tree);
+const stringify = (node, status, iter) => {
+  if (typeof node === 'string') {
+    return `'${node}'`;
   }
-
-  return '[complex value]';
+  if (_.isPlainObject(node)) {
+    return '[complex value]';
+  }
+  return String(node);
 };
 
-const plain = (node, nodeSignature = node.key) => {
-  console.log(`>> ${node.key}`, `> SIGNATURE: ${nodeSignature}`);
-  // nodeSignature = path.join(nodeSignature, node.key);
-
-  switch (node.type) {
-    case 'main': {
-      return node.children.flatMap((child) => plain(child));
-    }
-    case 'nested': {
-      console.log('PARENT:', node.key, `ANC: ${nodeSignature}`);
-      return node.children.flatMap((child) => plain(child), node.key);
-    }
-    case 'added': {
-      return `Property '${nodeSignature}' was ${node.type} with value: ${stringify(node.value)}`;
-    }
-    case 'deleted': {
-      return `Property '${node.key}' was removed`;
-    }
-    case 'updated': {
+const plain = (tree) => {
+  const iter = (innerTree, signatureKeys) => innerTree
+    .map((node) => {
+      const makeLine = `Property '${[...signatureKeys, node.key].join('.')}'`;
       const {
-        key, type, value1, value2,
+        type, key, value, value1, value2,
       } = node;
-      return `Property '${key}' was ${type}. From ${stringify(value1)} to ${stringify(value2)}`;
-    }
-    case 'unchanged':
-      return '';
-  }
+      switch (type) {
+        case 'nested': {
+          return iter(node.children, [...signatureKeys, key]);
+        }
+        case 'added': {
+          return `${makeLine} was ${type} with value: ${stringify(value)}`;
+        }
+        case 'deleted': {
+          return `${makeLine} was removed`;
+        }
+        case 'updated': {
+          return `${makeLine} was ${type}. From ${stringify(value1)} to ${stringify(value2)}`;
+        }
+        case 'unchanged':
+          return null;
+        default:
+          throw new Error('Type is not correct');
+      }
+    }).filter(Boolean).join('\n');
+  return iter(tree.children, []);
 };
 
-// export default plain;
-export default (tree) => {
-  const array = _.compact(plain(tree));
-
-  return array;
-};
+export default plain;
