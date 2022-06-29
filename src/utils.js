@@ -2,8 +2,9 @@ import path from 'path';
 import { readFileSync } from 'fs';
 import { fileURLToPath } from 'url';
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const getFixturePath = (filename) => path.join(__dirname, '..', '__fixtures__', filename);
-const readFile = (filename) => readFileSync(getFixturePath(filename), 'utf8');
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
-export default readFile;
+const getFixturePath = (filename) => path.join(__dirname, '..', '__fixtures__', filename);
+
+export default (filename) => readFileSync(getFixturePath(filename), 'utf-8');
