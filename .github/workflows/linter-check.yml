@@ -27,12 +27,13 @@ jobs:
         node-version: ${{ matrix.node }}
     - name: npm install
       run: |
-        make install
+		make install
     - name: Run linter
       run: |
         make lint
-    - run: make test
     - name: Test code coverage
+    - run: make test
+    
       # https://github.com/paambaati/codeclimate-action
       uses: paambaati/codeclimate-action@v3.0.0
       # Add Code Climate secret key

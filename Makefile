@@ -14,7 +14,7 @@ plain:
 	gendiff -f plain nestedFile1.yml nestedFile2.yml
 
 json:
-  gendiff -f json nestedFile1.yml nestedFile1.yml
+	gendiff -f json nestedFile1.yml nestedFile1.yml
 
 gendiff:
 	node bin/gendiff.js -h
