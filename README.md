@@ -28,8 +28,8 @@ make test
 <h2>Examples</h2>
 
 <h3>stylish(default formatter)</h3>
-<img width="572" alt="brain-calc" src="./images/stylish.png">
+<img width="572" alt="stylish format" src="./images/stylish.png">
 <h3>plain</h3>
-<img width="572" alt="brain-even" src="./images/plain.png">
+<img width="572" alt="plain format" src="./images/plain.png">
 <h3>json</h3>
-<img width="577" alt="brain-gcd" src="./images/json.png">
+<img width="577" alt="json format" src="./images/json.png">
