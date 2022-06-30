@@ -8,11 +8,11 @@ const genDiff = (path1, path2, format = 'stylish') => {
   const ext1 = path.extname(path1);
   const ext2 = path.extname(path2);
 
-  const filePath1 = path.resolve('__fixtures__', path1);
-  const fileObj1 = parse(fs.readFileSync(filePath1, 'utf-8'), ext1);
-  const filePath2 = path.resolve('__fixtures__', path2);
-  const fileObj2 = parse(fs.readFileSync(filePath2, 'utf-8'), ext2);
-  const result = buildTree(fileObj1, fileObj2);
+  const filepath1 = path.resolve('__fixtures__', path1);
+  const data1 = parse(fs.readFileSync(filepath1, 'utf-8'), ext1);
+  const filepath2 = path.resolve('__fixtures__', path2);
+  const data2 = parse(fs.readFileSync(filepath2, 'utf-8'), ext2);
+  const result = buildTree(data1, data2);
   return getFormat(result, format);
 };
 

@@ -4,11 +4,13 @@
 <a href="https://codeclimate.com/github/glinyany/frontend-project-lvl2/test_coverage"><img src="https://api.codeclimate.com/v1/badges/f4dbf79c0df4cb7f8cd7/test_coverage" /></a><a href="https://codeclimate.com/github/glinyany/frontend-project-lvl2/maintainability"><img src="https://api.codeclimate.com/v1/badges/f4dbf79c0df4cb7f8cd7/maintainability" /></a>
 
 <h1 align="center">Second Hexlet Project</h1>
-<h3 align="center">The Brain Games(console games).</h3>
+<h3 align="center">A difference calculator(CLI application).</h3>
 <h2>Description</h2>
 <p>This project is a difference generator for json, yaml and ini files.</p>
 <p>Can be used as a script or as a library in other projects.</p>
 <p>Three format styles: stylish(default), plain and json.</p> 
+<p>This is a popular task for which there are many online services, such as http://www.jsondiff.com/.</p>
+<p>A similar mechanism is used when outputting tests or when automatically tracking changes in configuration files.</p>
 
 ## Setup
 
