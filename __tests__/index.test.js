@@ -1,5 +1,5 @@
 import { expect, test, describe } from '@jest/globals';
-import genDiff from '../src/index.js';
+import genDiff from '../index.js';
 import readFile from '../src/utils.js';
 
 const cases = [
