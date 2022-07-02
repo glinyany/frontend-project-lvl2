@@ -16,11 +16,11 @@ const stringify = (tree, depth, iter) => {
 const iter = (node, depth = 0) => {
   switch (node.type) {
     case 'main': {
-      const result = node.children.flatMap((child) => iter(child, depth + 1));
+      const result = node.children.map((child) => iter(child, depth + 1));
       return `{\n${result.join('\n')}\n}`;
     }
     case 'nested': {
-      const result = node.children.flatMap((child) => iter(child, depth + 1));
+      const result = node.children.map((child) => iter(child, depth + 1));
       return `${space(depth)}  ${node.key}: {\n${result.join('\n')}\n${space(depth)}  }`;
     }
     case 'added': {

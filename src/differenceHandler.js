@@ -15,7 +15,7 @@ const genDiff = (object1, object2) => {
       return { key, value: value1, type: 'deleted' };
     }
 
-    if (_.isObject(value1) && _.isObject(value2)) {
+    if (_.isPlainObject(value1) && _.isPlainObject(value2)) {
       return { key, children: genDiff(value1, value2), type: 'nested' };
     }
 
