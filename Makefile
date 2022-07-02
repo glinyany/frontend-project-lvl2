@@ -1,20 +1,14 @@
 install:
 	npm ci
 
-start-json:
-	gendiff file1.json file2.json
-
-start-yaml:
-	gendiff file1.yaml file2.yaml
-
 nested:
-	gendiff -f stylish nestedFile1.yml nestedFile2.yml
+	gendiff ./__fixtures__/nestedFile1.yml ./__fixtures__/nestedFile2.json
 
 plain:
-	gendiff -f plain nestedFile1.yml nestedFile2.yml
+	gendiff -f plain ./__fixtures__/nestedFile1.yml ./__fixtures__/nestedFile2.json
 
 json:
-	gendiff -f json nestedFile1.yml nestedFile1.yml
+	gendiff -f json ./__fixtures__/nestedFile1.yml ./__fixtures__/nestedFile2.json
 
 gendiff:
 	node bin/gendiff.js -h

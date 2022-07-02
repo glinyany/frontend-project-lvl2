@@ -7,6 +7,7 @@ import genDiff from '../index.js';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const getFixturePath = (filename) => path.join(__dirname, '..', '__fixtures__', filename);
+
 const readFile = (filename) => readFileSync(getFixturePath(filename), 'utf-8');
 
 const cases = [
@@ -17,7 +18,10 @@ const cases = [
 
 describe.each(cases)('Compare %s and %s in format %s to have %s', (file1, file2, formatName, result) => {
   test('gendiff test', () => {
-    const expected = readFile(result);
-    expect(genDiff(file1, file2, formatName)).toBe(expected);
+    const filepath1 = getFixturePath(file1, 'utf-8');
+    const filepath2 = getFixturePath(file2, 'utf-8');
+    const actualOutput = genDiff(filepath1, filepath2, formatName);
+    const expectedOutput = readFile(result);
+    expect(actualOutput).toBe(expectedOutput);
   });
 });

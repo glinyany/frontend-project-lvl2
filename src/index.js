@@ -1,31 +1,24 @@
-import path from 'path';
-import fs from 'fs';
+import { extname, resolve, isAbsolute } from 'path';
+import { readFileSync } from 'fs';
 import parse from './parsers.js';
 import buildTree from './differenceHandler.js';
 import getFormat from './formatters/index.js';
 
-const genDiff = (path1, path2, format = 'stylish') => {
-  const ext1 = path.extname(path1);
-  const ext2 = path.extname(path2);
+const prepareData = (filepath) => {
+  const type = extname(filepath).slice(1);
+  const isFilepathAbsolute = isAbsolute(filepath)
+    ? filepath
+    : resolve(process.cwd(), filepath);
+  const file = readFileSync(isFilepathAbsolute, 'utf-8');
 
-  const filepath1 = path.resolve('__fixtures__', path1);
-  const data1 = parse(fs.readFileSync(filepath1, 'utf-8'), ext1);
-  const filepath2 = path.resolve('__fixtures__', path2);
-  const data2 = parse(fs.readFileSync(filepath2, 'utf-8'), ext2);
+  return parse(file, type);
+};
+
+const genDiff = (path1, path2, format = 'stylish') => {
+  const data1 = prepareData(path1);
+  const data2 = prepareData(path2);
   const result = buildTree(data1, data2);
   return getFormat(result, format);
 };
 
 export default genDiff;
-
-// export default (filepath1, filepath2, format = 'stylish') => {
-//   const ext1 = path.extname(filepath1);
-//   const ext2 = path.extname(filepath2);
-
-//   const data1 = parse(readFile(filepath1), ext1);
-//   const data2 = parse(readFile(filepath2), ext2);
-
-//   const differenceObject = buildTree(data1, data2);
-
-//   return getFormat(differenceObject, format);
-// };
