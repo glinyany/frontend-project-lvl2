@@ -38,7 +38,7 @@ const iter = (node, depth = 0) => {
       return `${data1}\n${data2}`;
     }
     default:
-      return '';
+      throw new Error(`Invalid type: ${node.type}`);
   }
 };
 
