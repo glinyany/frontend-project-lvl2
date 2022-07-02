@@ -1,4 +1,4 @@
-import { extname, resolve, isAbsolute } from 'path';
+import { extname, resolve } from 'path';
 import { readFileSync } from 'fs';
 import parse from './parsers.js';
 import buildTree from './differenceHandler.js';
@@ -6,10 +6,8 @@ import getFormat from './formatters/index.js';
 
 const prepareData = (filepath) => {
   const type = extname(filepath).slice(1);
-  const isFilepathAbsolute = isAbsolute(filepath)
-    ? filepath
-    : resolve(process.cwd(), filepath);
-  const file = readFileSync(isFilepathAbsolute, 'utf-8');
+  const formedFilepath = resolve(process.cwd(), filepath);
+  const file = readFileSync(formedFilepath, 'utf-8');
 
   return parse(file, type);
 };
