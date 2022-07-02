@@ -1,10 +1,6 @@
-/* eslint-disable no-restricted-syntax */
-/* eslint-disable consistent-return */
-/* eslint-disable default-case */
-/* eslint-disable no-unused-vars */
 import _ from 'lodash';
 
-const stringify = (node, status, iter) => {
+const stringify = (node) => {
   if (typeof node === 'string') {
     return `'${node}'`;
   }
