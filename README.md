@@ -27,7 +27,7 @@ npm link (you may need sudo)
 make test
 ```
 
-<h2>Examples with available formatters</h2>
+<h2>Examples with available formatters:</h2>
 
 [![asciicast](https://asciinema.org/a/DdDimQwmZIKlT830i8GbTRISY.svg)](https://asciinema.org/a/DdDimQwmZIKlT830i8GbTRISY)
 [![asciicast](https://asciinema.org/a/EyyIi0E7BN8nK8Ht1P2YoCgOb.svg)](https://asciinema.org/a/EyyIi0E7BN8nK8Ht1P2YoCgOb)
