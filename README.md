@@ -30,7 +30,7 @@ make test
 <h2>Examples with available formatters</h2>
 
 <h3>stylish(default formatter)</h3>
-[![asciicast](https://asciinema.org/a/oqtKqHXsw0KMWyxmE9zccQYzI.svg)](https://asciinema.org/a/oqtKqHXsw0KMWyxmE9zccQYzI)
+[![asciicast](https://asciinema.org/a/DdDimQwmZIKlT830i8GbTRISY.svg)](https://asciinema.org/a/DdDimQwmZIKlT830i8GbTRISY)
 <h3>plain</h3>
 [![asciicast](https://asciinema.org/a/EyyIi0E7BN8nK8Ht1P2YoCgOb.svg)](https://asciinema.org/a/EyyIi0E7BN8nK8Ht1P2YoCgOb)
 <h3>json</h3>
