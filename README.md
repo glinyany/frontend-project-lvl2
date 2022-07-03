@@ -30,8 +30,8 @@ make test
 <h2>Examples</h2>
 
 <h3>stylish(default formatter)</h3>
-<img width="572" alt="stylish format" src="./images/stylish.png">
+[![asciicast](https://asciinema.org/a/oqtKqHXsw0KMWyxmE9zccQYzI.svg)](https://asciinema.org/a/oqtKqHXsw0KMWyxmE9zccQYzI)
 <h3>plain</h3>
-<img width="572" alt="plain format" src="./images/plain.png">
+[![asciicast](https://asciinema.org/a/EyyIi0E7BN8nK8Ht1P2YoCgOb.svg)](https://asciinema.org/a/EyyIi0E7BN8nK8Ht1P2YoCgOb)
 <h3>json</h3>
-<img width="577" alt="json format" src="./images/json.png">
+[![asciicast](https://asciinema.org/a/7zjTxEoOwJiMMkrAigJ35xcqG.svg)](https://asciinema.org/a/7zjTxEoOwJiMMkrAigJ35xcqG)
