@@ -13,7 +13,7 @@ const stringify = (node) => {
 const plain = (tree) => {
   const iter = (innerTree, signatureKeys) => innerTree
     .map((node) => {
-      const makeLine = `Property '${[...signatureKeys, node.key].join('.')}'`;
+      const lineStart = `Property '${[...signatureKeys, node.key].join('.')}'`;
       const {
         type, key, value, value1, value2,
       } = node;
@@ -22,13 +22,13 @@ const plain = (tree) => {
           return iter(node.children, [...signatureKeys, key]);
         }
         case 'added': {
-          return `${makeLine} was ${type} with value: ${stringify(value)}`;
+          return `${lineStart} was ${type} with value: ${stringify(value)}`;
         }
         case 'deleted': {
-          return `${makeLine} was removed`;
+          return `${lineStart} was removed`;
         }
         case 'updated': {
-          return `${makeLine} was ${type}. From ${stringify(value1)} to ${stringify(value2)}`;
+          return `${lineStart} was ${type}. From ${stringify(value1)} to ${stringify(value2)}`;
         }
         case 'unchanged':
           return null;
